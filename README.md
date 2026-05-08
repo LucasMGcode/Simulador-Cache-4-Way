@@ -22,13 +22,16 @@ O projeto nasceu como trabalho da disciplina INF450, mas este repositório cont�
 - FSM principal para comparar tags, tratar `hit`, buscar bloco na RAM e atualizar metadados.
 - Política LRU local por conjunto usando idades de 2 bits.
 - Testbench auto-verificável com mensagens `PASS/FAIL`.
+- Desenho SVG editável no Inkscape e renderizado no Colab com dados reais da simulação.
 
 ## Estrutura
 
 ```text
 .
+├── assets/               # SVG editável no Inkscape para visualização do datapath
 ├── src/                  # Código Verilog e testbench
-├── docs/                 # Explicações de FSM, LRU e roteiro de validação
+├── docs/                 # Explicações de datapath, FSM, LRU e visualização
+├── notebooks/            # Notebook Colab para simular e visualizar o projeto
 ├── .github/workflows/    # CI com Icarus Verilog
 ├── LICENSE
 ├── README.md
@@ -45,6 +48,7 @@ make sim
 ```
 
 O testbench gera uma sequência de leituras e imprime, para cada acesso, endereço, `tag`, linha, bloco, sinal de `hit`, via selecionada e dado de saída.
+Além do log textual, ele gera `trace.csv`, usado pelo notebook Colab para preencher o SVG do datapath com os sinais de cada acesso.
 
 ## Modelo padrão
 
@@ -90,6 +94,7 @@ ALL TESTS PASSED
 ## Documentação
 
 - [Datapath da cache](docs/datapath.md)
+- [Desenho Inkscape e marcadores dinâmicos](docs/inkscape-drawing.md)
 - [FSM principal](docs/fsm.md)
 - [Política LRU](docs/lru.md)
 - [Como apresentar este projeto](docs/presentation.md)

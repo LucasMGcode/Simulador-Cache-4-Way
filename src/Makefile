@@ -8,4 +8,4 @@ sim:
 	vvp $(SIM)
 
 clean:
-	rm -f $(SIM) *.vcd *.data *.txt
+	rm -f $(SIM) *.vcd *.data *.txt *.csv

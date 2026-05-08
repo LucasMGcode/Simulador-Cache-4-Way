@@ -22,13 +22,16 @@ The project started as coursework for INF450, but this repository contains only 
 - Main FSM for tag comparison, hit handling, block fetch from RAM, and metadata update.
 - Per-set LRU policy using 2-bit ages.
 - Self-checking testbench with `PASS/FAIL` messages.
+- Inkscape-editable SVG drawing rendered in Colab with real simulation trace data.
 
 ## Layout
 
 ```text
 .
+├── assets/               # Inkscape-editable SVG datapath visualization
 ├── src/                  # Verilog source code and testbench
-├── docs/                 # FSM, LRU, and validation notes
+├── docs/                 # Datapath, FSM, LRU, and visualization notes
+├── notebooks/            # Colab notebook for simulation and visualization
 ├── .github/workflows/    # Icarus Verilog CI
 ├── LICENSE
 ├── README.md
@@ -45,6 +48,7 @@ make sim
 ```
 
 The testbench runs a sequence of reads and prints the address, `tag`, line, block, `hit` signal, selected way, and output data for each access.
+It also emits `trace.csv`, which the Colab notebook uses to fill the datapath SVG with per-access signal values.
 
 ## Default model
 
@@ -90,6 +94,7 @@ ALL TESTS PASSED
 ## Documentation
 
 - [Cache datapath](docs/datapath.md)
+- [Inkscape drawing and dynamic markers](docs/inkscape-drawing.md)
 - [Main FSM](docs/fsm.md)
 - [LRU policy](docs/lru.md)
 - [How to present this project](docs/presentation.md)

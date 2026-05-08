@@ -23,6 +23,8 @@ module tb_cache4();
   wire [2:0] state_debug;
 
   integer failures;
+  integer trace_file;
+  integer step;
 
   cache_4way_read_only #(
     CACHE_SIZE,
@@ -76,11 +78,22 @@ module tb_cache4();
     input [1:0] expected_lru2;
     input [1:0] expected_lru3;
     input [255:0] label;
+    input [127:0] event_name;
+    reg observed_hit;
+    reg [1:0] observed_way;
+    reg [7:0] observed_dout;
+    reg [2:0] observed_state;
     begin
+      step = step + 1;
       address = addr;
       @(posedge clk);
       wait(done == 1'b1);
       #1;
+
+      observed_hit = hit;
+      observed_way = selected_way;
+      observed_dout = dout;
+      observed_state = state_debug;
 
       $display("\nACCESS %-24s addr=%0d tag=%0d line=%0d blk=%0d hit=%0b way=%0d dout=%0d lru={%0d,%0d,%0d,%0d}",
                label,
@@ -88,25 +101,51 @@ module tb_cache4();
                Cache.tag,
                Cache.line,
                Cache.blk,
-               hit,
-               selected_way,
-               dout,
+               observed_hit,
+               observed_way,
+               observed_dout,
                Cache.lru0,
                Cache.lru1,
                Cache.lru2,
                Cache.lru3);
 
-      expect_equal("hit", hit, expected_hit);
-      expect_equal("selected_way", selected_way, expected_way);
-      expect_equal("dout", dout, expected_dout);
+      expect_equal("hit", observed_hit, expected_hit);
+      expect_equal("selected_way", observed_way, expected_way);
+      expect_equal("dout", observed_dout, expected_dout);
 
-      // LRU metadata is written on the clock edge after done is observed.
+      // LRU, tag and valid metadata are written on the clock edge after done is observed.
       @(posedge clk);
       #1;
       expect_equal("lru0", Cache.lru0, expected_lru0);
       expect_equal("lru1", Cache.lru1, expected_lru1);
       expect_equal("lru2", Cache.lru2, expected_lru2);
       expect_equal("lru3", Cache.lru3, expected_lru3);
+
+      $fwrite(trace_file,
+              "%0d,%0s,%0s,%0d,%0d,%0d,%0d,%0d,%0d,%0d,%0d,%0d,%0d,%0d,%0d,%0d,%0d,%0d,%0d,%0d,%0d,%0d,%0d\n",
+              step,
+              label,
+              event_name,
+              address,
+              Cache.tag,
+              Cache.line,
+              Cache.blk,
+              observed_hit,
+              observed_way,
+              observed_dout,
+              observed_state,
+              Cache.lru0,
+              Cache.lru1,
+              Cache.lru2,
+              Cache.lru3,
+              Cache.v0,
+              Cache.v1,
+              Cache.v2,
+              Cache.v3,
+              Cache.tag0,
+              Cache.tag1,
+              Cache.tag2,
+              Cache.tag3);
     end
   endtask
 
@@ -115,24 +154,34 @@ module tb_cache4();
     $dumpvars(0, tb_cache4);
 
     failures = 0;
+    step = 0;
+    trace_file = $fopen("trace.csv", "w");
+    if (trace_file == 0) begin
+      $display("FAIL could not open trace.csv");
+      $fatal(1);
+    end
+    $fwrite(trace_file, "step,label,event,addr,tag,line,blk,hit,selected_way,dout,state,lru0,lru1,lru2,lru3,valid0,valid1,valid2,valid3,tag0,tag1,tag2,tag3\n");
+
     din = 8'd0;
     address = 0;
     reset = 1'b1;
     #4;
     reset = 1'b0;
 
-    read_and_check(12'd0,  1'b0, 2'd0, 8'd0,  2'd0, 2'd1, 2'd2, 2'd3, "miss fills invalid way0");
-    read_and_check(12'd16, 1'b0, 2'd1, 8'd16, 2'd1, 2'd0, 2'd2, 2'd3, "miss fills invalid way1");
-    read_and_check(12'd32, 1'b0, 2'd2, 8'd32, 2'd2, 2'd1, 2'd0, 2'd3, "miss fills invalid way2");
-    read_and_check(12'd48, 1'b0, 2'd3, 8'd48, 2'd3, 2'd2, 2'd1, 2'd0, "miss fills invalid way3");
-    read_and_check(12'd0,  1'b1, 2'd0, 8'd0,  2'd0, 2'd3, 2'd2, 2'd1, "hit updates LRU");
-    read_and_check(12'd64, 1'b0, 2'd1, 8'd64, 2'd1, 2'd0, 2'd3, 2'd2, "miss replaces LRU way1");
+    read_and_check(12'd0,  1'b0, 2'd0, 8'd0,  2'd0, 2'd1, 2'd2, 2'd3, "miss_fills_invalid_way0", "miss-fill");
+    read_and_check(12'd16, 1'b0, 2'd1, 8'd16, 2'd1, 2'd0, 2'd2, 2'd3, "miss_fills_invalid_way1", "miss-fill");
+    read_and_check(12'd32, 1'b0, 2'd2, 8'd32, 2'd2, 2'd1, 2'd0, 2'd3, "miss_fills_invalid_way2", "miss-fill");
+    read_and_check(12'd48, 1'b0, 2'd3, 8'd48, 2'd3, 2'd2, 2'd1, 2'd0, "miss_fills_invalid_way3", "miss-fill");
+    read_and_check(12'd0,  1'b1, 2'd0, 8'd0,  2'd0, 2'd3, 2'd2, 2'd1, "hit_updates_lru", "hit");
+    read_and_check(12'd64, 1'b0, 2'd1, 8'd64, 2'd1, 2'd0, 2'd3, 2'd2, "miss_replaces_lru_way1", "miss-replace");
 
     if (failures == 0) begin
       $display("\nALL TESTS PASSED");
+      $fclose(trace_file);
       $finish;
     end else begin
       $display("\nTESTS FAILED failures=%0d", failures);
+      $fclose(trace_file);
       $fatal(1);
     end
   end

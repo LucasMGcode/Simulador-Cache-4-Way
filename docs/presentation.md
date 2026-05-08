@@ -11,7 +11,8 @@
 7. Explique o caminho de `miss`: escolher via inválida ou substituir a via com `LRU = 3`.
 8. Explique a FSM: `COMPARE`, `HIT`, `MISS`, `FILL_BLOCK`, `UPDATE_TAG`.
 9. Explique a política LRU: idade `0` é mais recente, idade `3` é candidata à substituição.
-10. Finalize com o testbench: ele valida miss, hit, substituição e atualização de LRU com mensagens `PASS/FAIL`.
+10. Mostre o SVG do datapath no Colab e avance pelos passos gerados por `trace.csv`.
+11. Finalize com o testbench: ele valida miss, hit, substituição e atualização de LRU com mensagens `PASS/FAIL`.
 
 ## Perguntas prováveis
 
@@ -22,6 +23,7 @@
 - Por que a política LRU precisa de 2 bits?
 - Quando o LRU é atualizado?
 - O que significa `read-only` neste projeto?
+- Como o `trace.csv` se conecta aos marcadores `@...` do desenho?
 
 ## English summary
 

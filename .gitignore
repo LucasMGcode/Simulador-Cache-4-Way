@@ -8,6 +8,7 @@ src/*.data
 src/input.txt
 src/*.out
 src/*.log
+src/*.csv
 src/*.vvp
 
 # Python/editor artifacts

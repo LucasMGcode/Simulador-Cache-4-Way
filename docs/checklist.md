@@ -9,6 +9,8 @@
 - [x] Licença MIT.
 - [x] CI com Icarus Verilog.
 - [x] Referências brutas movidas para `private/references/`, fora do Git.
+- [x] SVG autoral em `assets/`, editável no Inkscape.
+- [x] Notebook Colab em `notebooks/`.
 
 ### Validação técnica
 
@@ -18,6 +20,8 @@
 - [x] Validar `miss` com via inválida.
 - [x] Validar substituição quando as quatro vias estão válidas.
 - [x] Validar atualização de LRU após `hit` e após preenchimento por `miss`.
+- [x] Gerar `trace.csv` com os sinais usados pela visualização.
+- [x] Validar que todos os marcadores `@...` do SVG são substituíveis.
 
 ### Explicação para apresentação
 
@@ -27,6 +31,7 @@
 - [x] Explicar decoder de escrita da via escolhida.
 - [x] Explicar FSM principal.
 - [x] Explicar LRU por idade de 2 bits.
+- [x] Explicar o desenho Inkscape e como os marcadores se conectam ao `trace.csv`.
 
 ## English
 
@@ -37,6 +42,8 @@
 - [x] MIT license.
 - [x] Icarus Verilog CI.
 - [x] Raw references moved to `private/references/`, outside Git.
+- [x] Original SVG under `assets/`, editable in Inkscape.
+- [x] Colab notebook under `notebooks/`.
 
 ### Technical validation
 
@@ -46,6 +53,8 @@
 - [x] Validate `miss` with an invalid way.
 - [x] Validate replacement when all four ways are valid.
 - [x] Validate LRU update after both `hit` and miss fill.
+- [x] Emit `trace.csv` with the signals used by the visualization.
+- [x] Validate that all SVG `@...` markers can be replaced.
 
 ## Última validação local / Latest local validation
 

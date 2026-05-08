@@ -4,6 +4,9 @@
 
 O datapath abaixo mostra o fluxo de uma leitura na cache `4-way`.
 
+Versão visual editável no Inkscape: [`assets/cache4way_datapath.svg`](../assets/cache4way_datapath.svg).
+Documentação dos marcadores dinâmicos: [`docs/inkscape-drawing.md`](inkscape-drawing.md).
+
 ```mermaid
 flowchart LR
     A[Endereço] --> SPLIT[Separar campos]
