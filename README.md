@@ -4,6 +4,8 @@
 ![Language](https://img.shields.io/badge/language-Verilog-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
+[![Abrir no Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/LucasMGcode/Simulador-Cache-4-Way/blob/main/notebooks/cache4way_colab.ipynb)
+
 **Idioma:** Português | [English](README.en.md)
 
 Este projeto implementa uma cache associativa por conjunto `4-way`, somente leitura, em Verilog. O objetivo é servir como material educacional de arquitetura de computadores, mostrando como tags, bits de validade, seleção de vias, preenchimento por bloco e política LRU se conectam em um datapath simples.

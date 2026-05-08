@@ -4,6 +4,8 @@
 ![Language](https://img.shields.io/badge/language-Verilog-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/LucasMGcode/Simulador-Cache-4-Way/blob/main/notebooks/cache4way_colab.ipynb)
+
 **Language:** [Português](README.md) | English
 
 This project implements a read-only `4-way set-associative` cache in Verilog. It is intended as educational computer architecture material, showing how tags, valid bits, way selection, block fill, and an LRU replacement policy fit together in a compact datapath.
