@@ -1,0 +1,18 @@
+digraph cache4_fsm {
+  rankdir=LR;
+  node [shape=box];
+
+  COMPARE [label="Comparar tags\ncalcula hit_bits"];
+  HIT [label="Hit\nle dado\natualiza LRU\ndone=1"];
+  MISS [label="Miss\nescolhe invalido ou LRU=3"];
+  FILL_BLOCK [label="Busca bloco na RAM\ncontador 0..blockSize-1\nescreve data way"];
+  UPDATE_TAG [label="Atualiza tag/valid\natualiza LRU\ndone=1"];
+
+  COMPARE -> HIT [label="hit=1"];
+  COMPARE -> MISS [label="hit=0"];
+  HIT -> COMPARE;
+  MISS -> FILL_BLOCK;
+  FILL_BLOCK -> FILL_BLOCK [label="END=0"];
+  FILL_BLOCK -> UPDATE_TAG [label="END=1"];
+  UPDATE_TAG -> COMPARE;
+}
