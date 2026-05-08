@@ -19,7 +19,7 @@ O projeto nasceu como trabalho da disciplina INF450, mas este repositório cont�
 - Decodificador para habilitar escrita na via escolhida em caso de `miss`.
 - FSM principal para comparar tags, tratar `hit`, buscar bloco na RAM e atualizar metadados.
 - Política LRU local por conjunto usando idades de 2 bits.
-- Testbench inicial com sequência de acessos.
+- Testbench auto-verificável com mensagens `PASS/FAIL`.
 
 ## Estrutura
 
@@ -64,11 +64,35 @@ Formato do endereço:
 [tag][line][block offset]
 ```
 
+
+## Exemplo de saída
+
+```text
+ACCESS miss fills invalid way0  addr=0 hit=0 way=0 dout=0
+PASS hit              value=0
+PASS selected_way     value=0
+PASS dout             value=0
+...
+ACCESS hit updates LRU          addr=0 hit=1 way=0 dout=0
+PASS hit              value=1
+...
+ALL TESTS PASSED
+```
+
+## Limitações
+
+- A cache é somente leitura: não há caminho de escrita do processador para a cache.
+- O projeto é educacional e prioriza clareza arquitetural sobre otimizações de síntese.
+- O testbench cobre os cenários principais, mas ainda pode ser expandido para múltiplas linhas e offsets diferentes.
+
 ## Documentação
 
+- [Datapath da cache](docs/datapath.md)
 - [FSM principal](docs/fsm.md)
 - [Política LRU](docs/lru.md)
+- [Como apresentar este projeto](docs/presentation.md)
 - [Checklist de desenvolvimento](docs/checklist.md)
+- [Backlog](docs/backlog.md)
 
 ## Créditos acadêmicos
 

@@ -22,6 +22,8 @@ module tb_cache4();
   wire [1:0] selected_way;
   wire [2:0] state_debug;
 
+  integer failures;
+
   cache_4way_read_only #(
     CACHE_SIZE,
     RAM_SIZE,
@@ -50,14 +52,38 @@ module tb_cache4();
     forever #1 clk = ~clk;
   end
 
-  task read_addr;
+  task expect_equal;
+    input [127:0] label;
+    input integer actual;
+    input integer expected;
+    begin
+      if (actual !== expected) begin
+        $display("FAIL %-16s expected=%0d actual=%0d", label, expected, actual);
+        failures = failures + 1;
+      end else begin
+        $display("PASS %-16s value=%0d", label, actual);
+      end
+    end
+  endtask
+
+  task read_and_check;
     input [RAM_BITS-1:0] addr;
+    input expected_hit;
+    input [1:0] expected_way;
+    input [7:0] expected_dout;
+    input [1:0] expected_lru0;
+    input [1:0] expected_lru1;
+    input [1:0] expected_lru2;
+    input [1:0] expected_lru3;
+    input [255:0] label;
     begin
       address = addr;
       @(posedge clk);
       wait(done == 1'b1);
       #1;
-      $display("addr=%0d tag=%0d line=%0d blk=%0d hit=%0b way=%0d dout=%0d state=%0d",
+
+      $display("\nACCESS %-24s addr=%0d tag=%0d line=%0d blk=%0d hit=%0b way=%0d dout=%0d lru={%0d,%0d,%0d,%0d}",
+               label,
                address,
                Cache.tag,
                Cache.line,
@@ -65,8 +91,22 @@ module tb_cache4();
                hit,
                selected_way,
                dout,
-               state_debug);
+               Cache.lru0,
+               Cache.lru1,
+               Cache.lru2,
+               Cache.lru3);
+
+      expect_equal("hit", hit, expected_hit);
+      expect_equal("selected_way", selected_way, expected_way);
+      expect_equal("dout", dout, expected_dout);
+
+      // LRU metadata is written on the clock edge after done is observed.
       @(posedge clk);
+      #1;
+      expect_equal("lru0", Cache.lru0, expected_lru0);
+      expect_equal("lru1", Cache.lru1, expected_lru1);
+      expect_equal("lru2", Cache.lru2, expected_lru2);
+      expect_equal("lru3", Cache.lru3, expected_lru3);
     end
   endtask
 
@@ -74,22 +114,26 @@ module tb_cache4();
     $dumpfile("cache4.vcd");
     $dumpvars(0, tb_cache4);
 
+    failures = 0;
     din = 8'd0;
     address = 0;
     reset = 1'b1;
     #4;
     reset = 1'b0;
 
-    read_addr(12'd0);
-    read_addr(12'd16);
-    read_addr(12'd32);
-    read_addr(12'd48);
-    read_addr(12'd0);
-    read_addr(12'd64);
-    read_addr(12'd16);
-    read_addr(12'd80);
-    read_addr(12'd32);
+    read_and_check(12'd0,  1'b0, 2'd0, 8'd0,  2'd0, 2'd1, 2'd2, 2'd3, "miss fills invalid way0");
+    read_and_check(12'd16, 1'b0, 2'd1, 8'd16, 2'd1, 2'd0, 2'd2, 2'd3, "miss fills invalid way1");
+    read_and_check(12'd32, 1'b0, 2'd2, 8'd32, 2'd2, 2'd1, 2'd0, 2'd3, "miss fills invalid way2");
+    read_and_check(12'd48, 1'b0, 2'd3, 8'd48, 2'd3, 2'd2, 2'd1, 2'd0, "miss fills invalid way3");
+    read_and_check(12'd0,  1'b1, 2'd0, 8'd0,  2'd0, 2'd3, 2'd2, 2'd1, "hit updates LRU");
+    read_and_check(12'd64, 1'b0, 2'd1, 8'd64, 2'd1, 2'd0, 2'd3, 2'd2, "miss replaces LRU way1");
 
-    $finish;
+    if (failures == 0) begin
+      $display("\nALL TESTS PASSED");
+      $finish;
+    end else begin
+      $display("\nTESTS FAILED failures=%0d", failures);
+      $fatal(1);
+    end
   end
 endmodule

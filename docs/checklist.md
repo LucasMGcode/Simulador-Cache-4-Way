@@ -14,10 +14,10 @@
 
 - [x] Compilar com `iverilog` 12.0.
 - [x] Rodar `make sim` em `src/`.
-- [ ] Validar `hit` após o primeiro `miss` de um bloco.
-- [ ] Validar `miss` com via inválida.
-- [ ] Validar substituição quando as quatro vias estão válidas.
-- [ ] Validar atualização de LRU após `hit` e após preenchimento por `miss`.
+- [x] Validar `hit` após o primeiro `miss` de um bloco.
+- [x] Validar `miss` com via inválida.
+- [x] Validar substituição quando as quatro vias estão válidas.
+- [x] Validar atualização de LRU após `hit` e após preenchimento por `miss`.
 
 ### Explicação para apresentação
 
@@ -42,10 +42,10 @@
 
 - [x] Compile with `iverilog` 12.0.
 - [x] Run `make sim` in `src/`.
-- [ ] Validate `hit` after the first block `miss`.
-- [ ] Validate `miss` with an invalid way.
-- [ ] Validate replacement when all four ways are valid.
-- [ ] Validate LRU update after both `hit` and miss fill.
+- [x] Validate `hit` after the first block `miss`.
+- [x] Validate `miss` with an invalid way.
+- [x] Validate replacement when all four ways are valid.
+- [x] Validate LRU update after both `hit` and miss fill.
 
 ## Última validação local / Latest local validation
 

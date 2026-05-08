@@ -19,7 +19,7 @@ The project started as coursework for INF450, but this repository contains only 
 - Decoder to enable writes to the selected way on a `miss`.
 - Main FSM for tag comparison, hit handling, block fetch from RAM, and metadata update.
 - Per-set LRU policy using 2-bit ages.
-- Initial testbench with a memory access sequence.
+- Self-checking testbench with `PASS/FAIL` messages.
 
 ## Layout
 
@@ -64,11 +64,35 @@ Address format:
 [tag][line][block offset]
 ```
 
+
+## Sample output
+
+```text
+ACCESS miss fills invalid way0  addr=0 hit=0 way=0 dout=0
+PASS hit              value=0
+PASS selected_way     value=0
+PASS dout             value=0
+...
+ACCESS hit updates LRU          addr=0 hit=1 way=0 dout=0
+PASS hit              value=1
+...
+ALL TESTS PASSED
+```
+
+## Limitations
+
+- The cache is read-only: there is no processor write path into the cache.
+- The project is educational and prioritizes architectural clarity over synthesis optimization.
+- The testbench covers the main scenarios, but it can still be expanded for multiple lines and different block offsets.
+
 ## Documentation
 
+- [Cache datapath](docs/datapath.md)
 - [Main FSM](docs/fsm.md)
 - [LRU policy](docs/lru.md)
+- [How to present this project](docs/presentation.md)
 - [Development checklist](docs/checklist.md)
+- [Backlog](docs/backlog.md)
 
 ## Academic credits
 
