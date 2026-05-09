@@ -20,6 +20,9 @@
 - [x] Validar `miss` com via inválida.
 - [x] Validar substituição quando as quatro vias estão válidas.
 - [x] Validar atualização de LRU após `hit` e após preenchimento por `miss`.
+- [x] Validar decodificação de endereço em `tag`, `line` e `block offset`.
+- [x] Validar acessos a múltiplas linhas da cache.
+- [x] Validar acessos a diferentes offsets dentro do mesmo bloco.
 - [x] Gerar `trace.csv` com os sinais usados pela visualização.
 - [x] Validar que todos os marcadores `@...` do SVG são substituíveis.
 
@@ -53,6 +56,9 @@
 - [x] Validate `miss` with an invalid way.
 - [x] Validate replacement when all four ways are valid.
 - [x] Validate LRU update after both `hit` and miss fill.
+- [x] Validate address decoding into `tag`, `line`, and `block offset`.
+- [x] Validate accesses to multiple cache lines.
+- [x] Validate accesses to different offsets within the same block.
 - [x] Emit `trace.csv` with the signals used by the visualization.
 - [x] Validate that all SVG `@...` markers can be replaced.
 

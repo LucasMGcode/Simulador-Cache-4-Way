@@ -23,6 +23,7 @@ O projeto nasceu como trabalho da disciplina INF450, mas este repositório cont�
 - Política LRU local por conjunto usando idades de 2 bits.
 - Testbench auto-verificável com mensagens `PASS/FAIL`.
 - Desenho SVG editável no Inkscape e renderizado no Colab com dados reais da simulação.
+- Cobertura de teste para substituição LRU, múltiplas linhas da cache e offsets dentro do bloco.
 
 ## Estrutura
 
@@ -49,6 +50,7 @@ make sim
 
 O testbench gera uma sequência de leituras e imprime, para cada acesso, endereço, `tag`, linha, bloco, sinal de `hit`, via selecionada e dado de saída.
 Além do log textual, ele gera `trace.csv`, usado pelo notebook Colab para preencher o SVG do datapath com os sinais de cada acesso.
+Os cenários cobrem misses em vias inválidas, hit após preenchimento, substituição LRU, indexação em linhas diferentes e leitura de offsets diferentes dentro do mesmo bloco.
 
 ## Modelo padrão
 
@@ -89,7 +91,7 @@ ALL TESTS PASSED
 
 - A cache é somente leitura: não há caminho de escrita do processador para a cache.
 - O projeto é educacional e prioriza clareza arquitetural sobre otimizações de síntese.
-- O testbench cobre os cenários principais, mas ainda pode ser expandido para múltiplas linhas e offsets diferentes.
+- O testbench cobre os cenários principais, mas ainda pode ser expandido para sequências maiores e padrões aleatórios de acesso.
 
 ## Documentação
 

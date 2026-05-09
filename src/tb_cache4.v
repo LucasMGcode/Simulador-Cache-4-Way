@@ -83,8 +83,15 @@ module tb_cache4();
     reg [1:0] observed_way;
     reg [7:0] observed_dout;
     reg [2:0] observed_state;
+    reg [TAG_BITS-1:0] expected_tag;
+    reg [LINE_BITS-1:0] expected_line;
+    reg [BLOCK_BITS-1:0] expected_blk;
     begin
       step = step + 1;
+      expected_tag = addr[RAM_BITS-1:LINE_BITS+BLOCK_BITS];
+      expected_line = addr[LINE_BITS+BLOCK_BITS-1:BLOCK_BITS];
+      expected_blk = addr[BLOCK_BITS-1:0];
+
       address = addr;
       @(posedge clk);
       wait(done == 1'b1);
@@ -112,6 +119,9 @@ module tb_cache4();
       expect_equal("hit", observed_hit, expected_hit);
       expect_equal("selected_way", observed_way, expected_way);
       expect_equal("dout", observed_dout, expected_dout);
+      expect_equal("tag", Cache.tag, expected_tag);
+      expect_equal("line", Cache.line, expected_line);
+      expect_equal("blk", Cache.blk, expected_blk);
 
       // LRU, tag and valid metadata are written on the clock edge after done is observed.
       @(posedge clk);
@@ -174,6 +184,19 @@ module tb_cache4();
     read_and_check(12'd48, 1'b0, 2'd3, 8'd48, 2'd3, 2'd2, 2'd1, 2'd0, "miss_fills_invalid_way3", "miss-fill");
     read_and_check(12'd0,  1'b1, 2'd0, 8'd0,  2'd0, 2'd3, 2'd2, 2'd1, "hit_updates_lru", "hit");
     read_and_check(12'd64, 1'b0, 2'd1, 8'd64, 2'd1, 2'd0, 2'd3, 2'd2, "miss_replaces_lru_way1", "miss-replace");
+
+    read_and_check(12'd4,  1'b0, 2'd0, 8'd4,  2'd0, 2'd1, 2'd2, 2'd3, "line1_miss_way0", "miss-line");
+    read_and_check(12'd8,  1'b0, 2'd0, 8'd8,  2'd0, 2'd1, 2'd2, 2'd3, "line2_miss_way0", "miss-line");
+    read_and_check(12'd12, 1'b0, 2'd0, 8'd12, 2'd0, 2'd1, 2'd2, 2'd3, "line3_miss_way0", "miss-line");
+    read_and_check(12'd4,  1'b1, 2'd0, 8'd4,  2'd0, 2'd1, 2'd2, 2'd3, "line1_hit_way0", "hit-line");
+    read_and_check(12'd8,  1'b1, 2'd0, 8'd8,  2'd0, 2'd1, 2'd2, 2'd3, "line2_hit_way0", "hit-line");
+    read_and_check(12'd12, 1'b1, 2'd0, 8'd12, 2'd0, 2'd1, 2'd2, 2'd3, "line3_hit_way0", "hit-line");
+
+    read_and_check(12'd26, 1'b0, 2'd1, 8'd26, 2'd1, 2'd0, 2'd2, 2'd3, "offset2_miss_way1", "miss-offset");
+    read_and_check(12'd24, 1'b1, 2'd1, 8'd24, 2'd1, 2'd0, 2'd2, 2'd3, "offset0_hit_way1", "hit-offset");
+    read_and_check(12'd25, 1'b1, 2'd1, 8'd25, 2'd1, 2'd0, 2'd2, 2'd3, "offset1_hit_way1", "hit-offset");
+    read_and_check(12'd26, 1'b1, 2'd1, 8'd26, 2'd1, 2'd0, 2'd2, 2'd3, "offset2_hit_way1", "hit-offset");
+    read_and_check(12'd27, 1'b1, 2'd1, 8'd27, 2'd1, 2'd0, 2'd2, 2'd3, "offset3_hit_way1", "hit-offset");
 
     if (failures == 0) begin
       $display("\nALL TESTS PASSED");
