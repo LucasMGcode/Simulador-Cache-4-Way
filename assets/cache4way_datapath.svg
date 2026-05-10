@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   width="1440"
+   width="1600"
    height="900"
-   viewBox="0 0 1440 900"
+   viewBox="0 0 1600 900"
    version="1.1"
    id="cache4way-datapath"
    sodipodi:docname="cache4way_datapath.svg"
@@ -21,34 +21,34 @@
   <defs>
     <linearGradient id="bgGradient" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#f8fbff" />
-      <stop offset="0.48" stop-color="#eef6ff" />
+      <stop offset="0.50" stop-color="#eef6ff" />
       <stop offset="1" stop-color="#f7f1e8" />
     </linearGradient>
     <linearGradient id="glassPanel" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.92" />
-      <stop offset="1" stop-color="#eaf3ff" stop-opacity="0.72" />
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.94" />
+      <stop offset="1" stop-color="#eaf3ff" stop-opacity="0.76" />
     </linearGradient>
     <linearGradient id="wayGlass" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.96" />
-      <stop offset="0.55" stop-color="#f6fbff" stop-opacity="0.86" />
-      <stop offset="1" stop-color="#e7eef8" stop-opacity="0.78" />
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.98" />
+      <stop offset="0.56" stop-color="#f6fbff" stop-opacity="0.90" />
+      <stop offset="1" stop-color="#e7eef8" stop-opacity="0.82" />
     </linearGradient>
     <linearGradient id="selectedGlass" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#eff6ff" />
-      <stop offset="0.55" stop-color="#dbeafe" />
+      <stop offset="0.56" stop-color="#dbeafe" />
       <stop offset="1" stop-color="#bfdbfe" />
     </linearGradient>
     <linearGradient id="signalGlass" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#ecfeff" stop-opacity="0.98" />
-      <stop offset="1" stop-color="#dbeafe" stop-opacity="0.90" />
+      <stop offset="1" stop-color="#dbeafe" stop-opacity="0.92" />
     </linearGradient>
     <linearGradient id="controlGlass" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#fff7ed" stop-opacity="0.98" />
-      <stop offset="1" stop-color="#fef3c7" stop-opacity="0.88" />
+      <stop offset="1" stop-color="#fef3c7" stop-opacity="0.90" />
     </linearGradient>
     <linearGradient id="memoryGlass" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#ecfdf5" stop-opacity="0.98" />
-      <stop offset="1" stop-color="#d1fae5" stop-opacity="0.88" />
+      <stop offset="1" stop-color="#d1fae5" stop-opacity="0.90" />
     </linearGradient>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#334155" />
@@ -64,7 +64,6 @@
       .mid-value { font: 800 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #0f172a; }
       .tiny-value { font: 800 12px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #0f172a; }
       .panel { fill: url(#glassPanel); stroke: #b7c6d8; stroke-opacity: 0.95; stroke-width: 2; }
-      .panel-line { stroke: #cbd5e1; stroke-width: 1.2; fill: none; opacity: 0.75; }
       .shadow { fill: #cbd5e1; opacity: 0.28; }
       .way-shadow { fill: #94a3b8; opacity: 0.18; }
       .signal { fill: url(#signalGlass); stroke: #0284c7; stroke-width: 1.5; }
@@ -89,178 +88,181 @@
     ]]></style>
   </defs>
 
-  <rect x="0" y="0" width="1440" height="900" fill="url(#bgGradient)" />
-  <circle cx="1190" cy="96" r="170" fill="#bfdbfe" opacity="0.20" />
-  <circle cx="168" cy="762" r="210" fill="#fed7aa" opacity="0.20" />
-  <circle cx="720" cy="-40" r="220" fill="#dcfce7" opacity="0.18" />
+  <rect x="0" y="0" width="1600" height="900" fill="url(#bgGradient)" />
+  <circle cx="1320" cy="96" r="184" fill="#bfdbfe" opacity="0.20" />
+  <circle cx="188" cy="768" r="216" fill="#fed7aa" opacity="0.20" />
+  <circle cx="760" cy="-40" r="232" fill="#dcfce7" opacity="0.18" />
 
-  <text x="44" y="52" class="title">Cache 4-Way Read-Only Datapath</text>
-  <text x="46" y="78" class="subtitle">Painel didatico: endereco, lookup paralelo, decisao de hit/miss e preenchimento de bloco</text>
+  <text x="48" y="52" class="title">Cache 4-Way Read-Only Datapath</text>
+  <text x="48" y="78" class="subtitle">Grid 16:9 com espacamento de 8px: endereco, lookup paralelo, decisao de hit/miss e preenchimento de bloco</text>
 
-  <rect id="event-badge" class="event-badge" x="1116" y="28" width="270" height="62" rx="18" />
-  <text x="1138" y="54" class="label">Evento do acesso</text>
-  <text x="1138" y="78" class="value">@event</text>
+  <rect id="event-badge" class="event-badge" x="1240" y="28" width="312" height="64" rx="16" />
+  <text x="1264" y="54" class="label">Evento do acesso</text>
+  <text x="1264" y="80" class="value">@event</text>
 
-  <!-- Area 1: address split -->
-  <rect class="shadow" x="48" y="126" width="378" height="246" rx="28" />
-  <rect class="panel" x="42" y="118" width="378" height="246" rx="28" />
-  <text x="70" y="150" class="zone-title">1. Entrada e campos</text>
-  <text x="70" y="174" class="small">Endereco de 12 bits separado antes do lookup.</text>
+  <!-- Column 1: address and summary -->
+  <rect class="shadow" x="56" y="136" width="360" height="596" rx="28" />
+  <rect class="panel" x="48" y="128" width="360" height="596" rx="28" />
+  <text x="80" y="160" class="zone-title">1. Entrada e campos</text>
+  <text x="80" y="184" class="small">Endereco de 12 bits antes do lookup.</text>
 
-  <rect class="signal" x="70" y="198" width="310" height="56" rx="16" />
-  <text x="92" y="222" class="label">Endereco</text>
-  <text x="92" y="246" class="value">addr = @addr</text>
+  <rect class="signal" x="80" y="208" width="296" height="64" rx="16" />
+  <text x="104" y="234" class="label">Endereco</text>
+  <text x="104" y="258" class="value">addr = @addr</text>
 
-  <rect class="chip-hot" x="70" y="286" width="86" height="50" rx="14" />
-  <text x="90" y="306" class="small">tag</text>
-  <text x="90" y="328" class="value">@tag</text>
+  <rect class="chip-hot" x="80" y="312" width="88" height="56" rx="14" />
+  <text x="104" y="334" class="small">tag</text>
+  <text x="104" y="358" class="value">@tag</text>
 
-  <rect class="chip-hot" x="176" y="286" width="86" height="50" rx="14" />
-  <text x="194" y="306" class="small">line</text>
-  <text x="198" y="328" class="value">@line</text>
+  <rect class="chip-hot" x="184" y="312" width="88" height="56" rx="14" />
+  <text x="206" y="334" class="small">line</text>
+  <text x="208" y="358" class="value">@line</text>
 
-  <rect class="chip-hot" x="282" y="286" width="86" height="50" rx="14" />
-  <text x="304" y="306" class="small">blk</text>
-  <text x="304" y="328" class="value">@blk</text>
+  <rect class="chip-hot" x="288" y="312" width="88" height="56" rx="14" />
+  <text x="312" y="334" class="small">blk</text>
+  <text x="312" y="358" class="value">@blk</text>
 
-  <text x="70" y="350" class="hint">tag=addr[11:4] | line=addr[3:2] | blk=addr[1:0]</text>
+  <text x="80" y="392" class="hint">tag=addr[11:4]</text>
+  <text x="80" y="410" class="hint">line=addr[3:2] | blk=addr[1:0]</text>
 
-  <!-- Area 2: cache core -->
-  <rect class="shadow" x="474" y="128" width="632" height="602" rx="32" />
-  <rect class="panel" x="466" y="118" width="632" height="602" rx="32" />
-  <text x="494" y="150" class="zone-title">2. Conjunto selecionado pela line @line</text>
-  <text x="494" y="174" class="small">As quatro vias sao consultadas em paralelo; cada comparador usa tag + valid.</text>
+  <rect class="shadow" x="88" y="496" width="288" height="184" rx="24" />
+  <rect class="panel" x="80" y="488" width="288" height="184" rx="24" />
+  <text x="104" y="520" class="zone-title">Resumo do passo</text>
+  <text x="104" y="548" class="tiny-value">event=@event</text>
+  <text x="104" y="572" class="tiny-value">addr=@addr | tag=@tag</text>
+  <text x="104" y="596" class="tiny-value">line=@line | blk=@blk</text>
+  <text x="104" y="620" class="tiny-value">hit=@hit | way=@selected_way</text>
+  <text x="104" y="644" class="tiny-value">dout=@dout</text>
+  <text x="104" y="668" class="tiny-value">state=@state</text>
+
+  <!-- Column 2: cache set -->
+  <rect class="shadow" x="448" y="136" width="720" height="596" rx="28" />
+  <rect class="panel" x="440" y="128" width="720" height="596" rx="28" />
+  <text x="472" y="160" class="zone-title">2. Conjunto selecionado pela line @line</text>
+  <text x="472" y="184" class="small">Quatro vias consultadas em paralelo; comparador = tag armazenada + valid.</text>
 
   <g id="way0-group">
-    <rect class="way-shadow" x="500" y="210" width="576" height="106" rx="22" />
-    <rect id="way0-card" class="way-card" x="494" y="202" width="576" height="106" rx="22" />
-    <text x="518" y="230" class="label">Way 0</text>
-    <rect class="logic" x="518" y="246" width="92" height="40" rx="13" />
-    <text x="536" y="271" class="tiny-value">cmp0</text>
-    <rect class="chip" x="628" y="246" width="92" height="40" rx="13" />
-    <text x="644" y="271" class="tiny-value">V=@valid0</text>
-    <rect class="chip" x="738" y="246" width="104" height="40" rx="13" />
-    <text x="754" y="271" class="tiny-value">Tag=@tag0</text>
-    <rect class="data-chip" x="860" y="246" width="88" height="40" rx="13" />
-    <text x="882" y="271" class="tiny-value">Data0</text>
-    <rect class="lru-chip" x="966" y="246" width="82" height="40" rx="13" />
-    <text x="981" y="271" class="tiny-value">LRU=@lru0</text>
+    <rect class="way-shadow" x="480" y="216" width="656" height="104" rx="24" />
+    <rect id="way0-card" class="way-card" x="472" y="208" width="656" height="104" rx="24" />
+    <text x="496" y="236" class="label">Way 0</text>
+    <rect class="logic" x="496" y="256" width="96" height="40" rx="14" />
+    <text x="520" y="281" class="tiny-value">cmp0</text>
+    <rect class="chip" x="616" y="256" width="96" height="40" rx="14" />
+    <text x="632" y="281" class="tiny-value">V=@valid0</text>
+    <rect class="chip" x="736" y="256" width="112" height="40" rx="14" />
+    <text x="754" y="281" class="tiny-value">Tag=@tag0</text>
+    <rect class="data-chip" x="872" y="256" width="96" height="40" rx="14" />
+    <text x="894" y="281" class="tiny-value">Data0</text>
+    <rect class="lru-chip" x="992" y="256" width="112" height="40" rx="14" />
+    <text x="1010" y="281" class="tiny-value">LRU=@lru0</text>
   </g>
 
   <g id="way1-group">
-    <rect class="way-shadow" x="500" y="334" width="576" height="106" rx="22" />
-    <rect id="way1-card" class="way-card" x="494" y="326" width="576" height="106" rx="22" />
-    <text x="518" y="354" class="label">Way 1</text>
-    <rect class="logic" x="518" y="370" width="92" height="40" rx="13" />
-    <text x="536" y="395" class="tiny-value">cmp1</text>
-    <rect class="chip" x="628" y="370" width="92" height="40" rx="13" />
-    <text x="644" y="395" class="tiny-value">V=@valid1</text>
-    <rect class="chip" x="738" y="370" width="104" height="40" rx="13" />
-    <text x="754" y="395" class="tiny-value">Tag=@tag1</text>
-    <rect class="data-chip" x="860" y="370" width="88" height="40" rx="13" />
-    <text x="882" y="395" class="tiny-value">Data1</text>
-    <rect class="lru-chip" x="966" y="370" width="82" height="40" rx="13" />
-    <text x="981" y="395" class="tiny-value">LRU=@lru1</text>
+    <rect class="way-shadow" x="480" y="344" width="656" height="104" rx="24" />
+    <rect id="way1-card" class="way-card" x="472" y="336" width="656" height="104" rx="24" />
+    <text x="496" y="364" class="label">Way 1</text>
+    <rect class="logic" x="496" y="384" width="96" height="40" rx="14" />
+    <text x="520" y="409" class="tiny-value">cmp1</text>
+    <rect class="chip" x="616" y="384" width="96" height="40" rx="14" />
+    <text x="632" y="409" class="tiny-value">V=@valid1</text>
+    <rect class="chip" x="736" y="384" width="112" height="40" rx="14" />
+    <text x="754" y="409" class="tiny-value">Tag=@tag1</text>
+    <rect class="data-chip" x="872" y="384" width="96" height="40" rx="14" />
+    <text x="894" y="409" class="tiny-value">Data1</text>
+    <rect class="lru-chip" x="992" y="384" width="112" height="40" rx="14" />
+    <text x="1010" y="409" class="tiny-value">LRU=@lru1</text>
   </g>
 
   <g id="way2-group">
-    <rect class="way-shadow" x="500" y="458" width="576" height="106" rx="22" />
-    <rect id="way2-card" class="way-card" x="494" y="450" width="576" height="106" rx="22" />
-    <text x="518" y="478" class="label">Way 2</text>
-    <rect class="logic" x="518" y="494" width="92" height="40" rx="13" />
-    <text x="536" y="519" class="tiny-value">cmp2</text>
-    <rect class="chip" x="628" y="494" width="92" height="40" rx="13" />
-    <text x="644" y="519" class="tiny-value">V=@valid2</text>
-    <rect class="chip" x="738" y="494" width="104" height="40" rx="13" />
-    <text x="754" y="519" class="tiny-value">Tag=@tag2</text>
-    <rect class="data-chip" x="860" y="494" width="88" height="40" rx="13" />
-    <text x="882" y="519" class="tiny-value">Data2</text>
-    <rect class="lru-chip" x="966" y="494" width="82" height="40" rx="13" />
-    <text x="981" y="519" class="tiny-value">LRU=@lru2</text>
+    <rect class="way-shadow" x="480" y="472" width="656" height="104" rx="24" />
+    <rect id="way2-card" class="way-card" x="472" y="464" width="656" height="104" rx="24" />
+    <text x="496" y="492" class="label">Way 2</text>
+    <rect class="logic" x="496" y="512" width="96" height="40" rx="14" />
+    <text x="520" y="537" class="tiny-value">cmp2</text>
+    <rect class="chip" x="616" y="512" width="96" height="40" rx="14" />
+    <text x="632" y="537" class="tiny-value">V=@valid2</text>
+    <rect class="chip" x="736" y="512" width="112" height="40" rx="14" />
+    <text x="754" y="537" class="tiny-value">Tag=@tag2</text>
+    <rect class="data-chip" x="872" y="512" width="96" height="40" rx="14" />
+    <text x="894" y="537" class="tiny-value">Data2</text>
+    <rect class="lru-chip" x="992" y="512" width="112" height="40" rx="14" />
+    <text x="1010" y="537" class="tiny-value">LRU=@lru2</text>
   </g>
 
   <g id="way3-group">
-    <rect class="way-shadow" x="500" y="582" width="576" height="106" rx="22" />
-    <rect id="way3-card" class="way-card" x="494" y="574" width="576" height="106" rx="22" />
-    <text x="518" y="602" class="label">Way 3</text>
-    <rect class="logic" x="518" y="618" width="92" height="40" rx="13" />
-    <text x="536" y="643" class="tiny-value">cmp3</text>
-    <rect class="chip" x="628" y="618" width="92" height="40" rx="13" />
-    <text x="644" y="643" class="tiny-value">V=@valid3</text>
-    <rect class="chip" x="738" y="618" width="104" height="40" rx="13" />
-    <text x="754" y="643" class="tiny-value">Tag=@tag3</text>
-    <rect class="data-chip" x="860" y="618" width="88" height="40" rx="13" />
-    <text x="882" y="643" class="tiny-value">Data3</text>
-    <rect class="lru-chip" x="966" y="618" width="82" height="40" rx="13" />
-    <text x="981" y="643" class="tiny-value">LRU=@lru3</text>
+    <rect class="way-shadow" x="480" y="600" width="656" height="104" rx="24" />
+    <rect id="way3-card" class="way-card" x="472" y="592" width="656" height="104" rx="24" />
+    <text x="496" y="620" class="label">Way 3</text>
+    <rect class="logic" x="496" y="640" width="96" height="40" rx="14" />
+    <text x="520" y="665" class="tiny-value">cmp3</text>
+    <rect class="chip" x="616" y="640" width="96" height="40" rx="14" />
+    <text x="632" y="665" class="tiny-value">V=@valid3</text>
+    <rect class="chip" x="736" y="640" width="112" height="40" rx="14" />
+    <text x="754" y="665" class="tiny-value">Tag=@tag3</text>
+    <rect class="data-chip" x="872" y="640" width="96" height="40" rx="14" />
+    <text x="894" y="665" class="tiny-value">Data3</text>
+    <rect class="lru-chip" x="992" y="640" width="112" height="40" rx="14" />
+    <text x="1010" y="665" class="tiny-value">LRU=@lru3</text>
   </g>
 
-  <path class="bus" d="M 380 226 C 420 226, 430 226, 466 226" />
-  <path class="bus" d="M 380 310 C 426 310, 426 172, 466 172" />
-  <path class="soft-bus" d="M 420 310 C 446 310, 452 255, 494 255" />
-  <path class="soft-bus" d="M 420 310 C 446 310, 452 379, 494 379" />
-  <path class="soft-bus" d="M 420 310 C 446 310, 452 503, 494 503" />
-  <path class="soft-bus" d="M 420 310 C 446 310, 452 627, 494 627" />
+  <!-- Column 3: decision and output -->
+  <rect class="shadow" x="1200" y="136" width="360" height="596" rx="28" />
+  <rect class="panel" x="1192" y="128" width="360" height="596" rx="28" />
+  <text x="1224" y="160" class="zone-title">3. Decisao e saida</text>
+  <text x="1224" y="184" class="small">Hit, via selecionada e dado final.</text>
 
-  <!-- Area 3: decision -->
-  <rect class="shadow" x="1152" y="128" width="252" height="602" rx="32" />
-  <rect class="panel" x="1144" y="118" width="252" height="602" rx="32" />
-  <text x="1172" y="150" class="zone-title">3. Decisao e saida</text>
-  <text x="1172" y="174" class="small">Hit, via selecionada e dado final.</text>
+  <rect class="logic" x="1224" y="224" width="296" height="88" rx="16" />
+  <text x="1256" y="252" class="label">Hit encoder</text>
+  <text x="1256" y="276" class="small">hit bits das 4 vias</text>
+  <text x="1256" y="300" class="value">hit = @hit</text>
 
-  <rect class="logic" x="1172" y="216" width="196" height="78" rx="20" />
-  <text x="1198" y="244" class="label">Hit encoder</text>
-  <text x="1198" y="267" class="small">hit bits das 4 vias</text>
-  <text x="1198" y="288" class="value">hit = @hit</text>
+  <rect class="logic" x="1224" y="376" width="296" height="112" rx="16" />
+  <text x="1256" y="404" class="label">Mux 4:1</text>
+  <text x="1256" y="428" class="small">seleciona data way</text>
+  <text x="1256" y="452" class="small">selected_way</text>
+  <text x="1256" y="476" class="value">@selected_way</text>
 
-  <rect class="logic" x="1172" y="348" width="196" height="92" rx="20" />
-  <text x="1198" y="376" class="label">Mux 4:1</text>
-  <text x="1198" y="399" class="small">seleciona data way</text>
-  <text x="1198" y="420" class="small">selected_way</text>
-  <text x="1198" y="432" class="mid-value">@selected_way</text>
+  <rect class="signal" x="1224" y="568" width="296" height="88" rx="16" />
+  <text x="1256" y="600" class="label">Saida da cache</text>
+  <text x="1256" y="632" class="value">dout = @dout</text>
 
-  <rect class="signal" x="1172" y="498" width="196" height="82" rx="20" />
-  <text x="1198" y="528" class="label">Saida da cache</text>
-  <text x="1198" y="556" class="value">dout = @dout</text>
+  <!-- Structured lookup and datapath routes -->
+  <path class="bus" d="M 376 240 C 408 240, 408 240, 440 240" />
+  <path class="soft-bus" d="M 376 340 C 424 340, 424 260, 472 260" />
+  <path class="soft-bus" d="M 376 340 C 424 340, 424 388, 472 388" />
+  <path class="soft-bus" d="M 376 340 C 424 340, 424 516, 472 516" />
+  <path class="soft-bus" d="M 376 340 C 424 340, 424 644, 472 644" />
 
-  <path class="data-bus" d="M 1070 255 C 1102 255, 1112 255, 1172 255" />
-  <path class="data-bus" d="M 1070 379 C 1110 379, 1118 380, 1172 390" />
-  <path class="data-bus" d="M 1070 503 C 1110 503, 1118 410, 1172 410" />
-  <path class="data-bus" d="M 1070 627 C 1102 627, 1112 430, 1172 430" />
-  <path class="bus" d="M 1270 294 C 1270 318, 1270 324, 1270 348" />
-  <path class="bus" d="M 1270 440 C 1270 468, 1270 474, 1270 498" />
+  <path class="data-bus" d="M 1128 276 C 1160 276, 1160 268, 1224 268" />
+  <path class="data-bus" d="M 1128 404 C 1160 404, 1160 416, 1224 416" />
+  <path class="data-bus" d="M 1128 532 C 1160 532, 1160 440, 1224 440" />
+  <path class="data-bus" d="M 1128 660 C 1160 660, 1160 464, 1224 464" />
+  <path class="bus" d="M 1372 312 C 1372 344, 1372 344, 1372 376" />
+  <path class="bus" d="M 1372 488 C 1372 528, 1372 528, 1372 568" />
 
-  <!-- Control and fill path -->
-  <rect class="shadow" x="50" y="758" width="1354" height="110" rx="28" />
-  <rect class="panel" x="42" y="750" width="1354" height="110" rx="28" />
-  <text x="70" y="782" class="zone-title">Controle e preenchimento em miss</text>
+  <!-- Bottom control and fill path -->
+  <rect class="shadow" x="56" y="756" width="1504" height="104" rx="28" />
+  <rect class="panel" x="48" y="748" width="1504" height="104" rx="28" />
+  <text x="80" y="780" class="zone-title">Controle e preenchimento em miss</text>
 
-  <rect class="control" x="70" y="804" width="190" height="44" rx="15" />
-  <text x="90" y="832" class="mid-value">FSM @state</text>
+  <rect class="control" x="80" y="796" width="200" height="48" rx="16" />
+  <text x="104" y="826" class="mid-value">FSM @state</text>
 
-  <rect class="control" x="304" y="804" width="214" height="44" rx="15" />
-  <text x="324" y="832" class="mid-value">Decoder way @selected_way</text>
+  <rect class="control" x="320" y="796" width="240" height="48" rx="16" />
+  <text x="344" y="826" class="mid-value">Decoder way @selected_way</text>
 
-  <rect class="control" x="562" y="804" width="272" height="44" rx="15" />
-  <text x="582" y="832" class="mid-value">LRU @lru0 @lru1 @lru2 @lru3</text>
+  <rect class="control" x="600" y="796" width="300" height="48" rx="16" />
+  <text x="624" y="826" class="mid-value">LRU @lru0 @lru1 @lru2 @lru3</text>
 
-  <rect class="memory" x="880" y="804" width="178" height="44" rx="15" />
-  <text x="900" y="832" class="mid-value">RAM addr @addr</text>
+  <rect class="memory" x="940" y="796" width="220" height="48" rx="16" />
+  <text x="964" y="826" class="mid-value">RAM addr @addr</text>
 
-  <rect class="memory" x="1102" y="804" width="178" height="44" rx="15" />
-  <text x="1122" y="832" class="mid-value">Counter blk @blk</text>
+  <rect class="memory" x="1200" y="796" width="220" height="48" rx="16" />
+  <text x="1224" y="826" class="mid-value">Counter blk @blk</text>
 
-  <path class="control-bus" d="M 260 826 C 278 826, 286 826, 304 826" />
-  <path class="control-bus" d="M 518 826 C 536 826, 544 826, 562 826" />
-  <path class="fill-bus" d="M 834 826 C 856 826, 858 826, 880 826" />
-  <path class="fill-bus" d="M 1058 826 C 1080 826, 1080 826, 1102 826" />
-  <path class="fill-bus" d="M 1191 804 C 1191 730, 900 728, 900 680" />
-
-  <rect class="shadow" x="50" y="602" width="378" height="128" rx="28" />
-  <rect class="panel" x="42" y="594" width="378" height="128" rx="28" />
-  <text x="70" y="624" class="zone-title">Resumo do passo</text>
-  <text x="70" y="648" class="tiny-value">event=@event | addr=@addr</text>
-  <text x="70" y="672" class="tiny-value">tag=@tag | line=@line | blk=@blk</text>
-  <text x="70" y="696" class="tiny-value">hit=@hit | way=@selected_way</text>
-  <text x="70" y="716" class="tiny-value">dout=@dout | state=@state</text>
+  <path class="control-bus" d="M 280 820 C 296 820, 304 820, 320 820" />
+  <path class="control-bus" d="M 560 820 C 576 820, 584 820, 600 820" />
+  <path class="fill-bus" d="M 900 820 C 916 820, 924 820, 940 820" />
+  <path class="fill-bus" d="M 1160 820 C 1176 820, 1184 820, 1200 820" />
+  <path class="fill-bus" d="M 1310 796 C 1310 732, 920 732, 920 696" />
 </svg>
