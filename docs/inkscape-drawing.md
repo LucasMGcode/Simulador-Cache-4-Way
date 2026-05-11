@@ -37,9 +37,13 @@ Estes textos aparecem literalmente no SVG e são substituídos no Colab com dado
 | Marcador | Significado |
 |---|---|
 | `@addr` | endereço acessado |
+| `@addr_bin` | endereço acessado em binário com 12 bits |
 | `@tag` | campo de tag extraído do endereço |
+| `@tag_bin` | campo `tag` em binário com 8 bits |
 | `@line` | linha/conjunto da cache |
+| `@line_bin` | campo `line` em binário com 2 bits |
 | `@blk` | offset do bloco |
+| `@blk_bin` | campo `block offset` em binário com 2 bits |
 | `@hit` | resultado de hit/miss |
 | `@selected_way` | via selecionada pelo encoder ou política de substituição |
 | `@dout` | dado de saída |
@@ -72,7 +76,7 @@ Pode editar livremente:
 
 Evite alterar:
 
-- os marcadores `@addr`, `@tag`, `@line`, `@blk`, `@hit`, `@selected_way`, `@dout`, `@state`, `@event`
+- os marcadores `@addr`, `@addr_bin`, `@tag`, `@tag_bin`, `@line`, `@line_bin`, `@blk`, `@blk_bin`, `@hit`, `@selected_way`, `@dout`, `@state`, `@event`
 - os marcadores indexados `@valid0..@valid3`, `@tag0..@tag3`, `@lru0..@lru3`
 - os ids `way0-card`, `way1-card`, `way2-card`, `way3-card`
 - o id `event-badge`
@@ -102,6 +106,8 @@ O fluxo esperado é:
 3. abrir `assets/cache4way_datapath.svg`
 4. substituir os marcadores com uma linha de `trace.csv`
 5. exibir o SVG renderizado no notebook
+
+Os marcadores binários não vêm diretamente do `trace.csv`. O notebook calcula `@addr_bin`, `@tag_bin`, `@line_bin` e `@blk_bin` a partir dos campos decimais já emitidos pelo testbench.
 
 ## Uso Didático
 

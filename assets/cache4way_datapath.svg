@@ -308,83 +308,93 @@
      x="80"
      y="208"
      width="296"
-     height="64"
+     height="80"
      rx="16"
      id="rect1131" />
   <text
      x="104"
-     y="234"
+     y="232"
      class="label"
-     id="text1133">Endereco</text>
+     id="text1133">Endereco atual</text>
   <text
      x="104"
-     y="258"
-     class="value"
-     id="text1135">addr = @addr</text>
+     y="256"
+     class="mid-value"
+     id="text1135">decimal @addr</text>
+  <text
+     x="104"
+     y="278"
+     class="tiny-value"
+     id="text1136">bin @addr_bin</text>
+  <text
+     x="80"
+     y="312"
+     class="label"
+     id="text1136a">Separacao binaria</text>
   <rect
      class="chip-hot"
      x="80"
-     y="312"
-     width="88"
-     height="56"
+     y="328"
+     width="128"
+     height="64"
      rx="14"
      id="rect1137" />
   <text
      x="104"
-     y="334"
+     y="350"
      class="small"
-     id="text1139">tag</text>
+     id="text1139">tag [11:4]</text>
   <text
-     x="104"
-     y="358"
-     class="value"
-     id="text1141">@tag</text>
+     x="96"
+     y="374"
+     class="tiny-value"
+     id="text1141">@tag_bin</text>
   <rect
      class="chip-hot"
-     x="184"
-     y="312"
-     width="88"
-     height="56"
+     x="224"
+     y="328"
+     width="64"
+     height="64"
      rx="14"
      id="rect1143" />
   <text
-     x="206"
-     y="334"
+     x="240"
+     y="350"
      class="small"
      id="text1145">line</text>
   <text
-     x="208"
-     y="358"
-     class="value"
-     id="text1147">@line</text>
+     x="236"
+     y="374"
+     class="tiny-value"
+     id="text1147">@line_bin</text>
   <rect
      class="chip-hot"
-     x="288"
-     y="312"
-     width="88"
-     height="56"
+     x="304"
+     y="328"
+     width="72"
+     height="64"
      rx="14"
      id="rect1149" />
   <text
-     x="312"
-     y="334"
+     x="324"
+     y="350"
      class="small"
      id="text1151">blk</text>
   <text
-     x="312"
-     y="358"
-     class="value"
-     id="text1153">@blk</text>
+     x="316"
+     y="374"
+     class="tiny-value"
+     id="text1153">@blk_bin</text>
   <text
      x="80"
-     y="392"
+     y="420"
      class="hint"
-     id="text1155">tag=addr[11:4]</text>
+     id="text1155">line escolhe o conjunto consultado.</text>
   <text
      x="80"
-     y="410"
+     y="438"
      class="hint"
-     id="text1157">line=addr[3:2] | blk=addr[1:0]</text>
+     id="text1157">tag compara nas 4 vias; blk escolhe o byte.</text>
   <rect
      class="shadow"
      x="88"
@@ -919,23 +929,23 @@
   <!-- Structured lookup and datapath routes -->
   <path
      class="bus"
-     d="M 376 240 C 408 240, 408 240, 440 240"
+     d="M 256 328 C 256 296, 400 296, 440 240"
      id="path1321" />
   <path
      class="soft-bus"
-     d="M 376 340 C 424 340, 424 260, 472 260"
+     d="M 408 360 C 424 360, 424 260, 472 260"
      id="path1323" />
   <path
      class="soft-bus"
-     d="M 376 340 C 424 340, 424 388, 472 388"
+     d="M 408 360 C 424 360, 424 388, 472 388"
      id="path1325" />
   <path
      class="soft-bus"
-     d="M 376 340 C 424 340, 424 516, 472 516"
+     d="M 408 360 C 424 360, 424 516, 472 516"
      id="path1327" />
   <path
      class="soft-bus"
-     d="M 376 340 C 424 340, 424 644, 472 644"
+     d="M 408 360 C 424 360, 424 644, 472 644"
      id="path1329" />
   <path
      class="data-bus"
