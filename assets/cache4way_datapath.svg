@@ -206,6 +206,8 @@
       .bus { stroke: #334155; stroke-width: 2.4; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; }
       .data-bus { stroke: #2563eb; stroke-width: 2.5; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; }
       .fill-bus { stroke: #059669; stroke-width: 2.4; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 8 6; }
+      .fill-bus-tail { stroke: #059669; stroke-width: 2.4; fill: none; marker-end: none; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 8 6; }
+      .fill-arrow { fill: #059669; stroke: #047857; stroke-width: 1; }
       .control-bus { stroke: #d97706; stroke-width: 2.2; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; }
       .soft-bus { stroke: #94a3b8; stroke-width: 1.5; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; }
     ]]></style>
@@ -1075,7 +1077,11 @@
      d="M 1160 820 C 1176 820, 1184 820, 1200 820"
      id="path1375" />
   <path
-     class="fill-bus"
-     d="M 1310 796 C 1310 732, 920 732, 920 696"
+     class="fill-bus-tail"
+     d="M 1310 796 C 1310 752, 1184 736, 1024 732 C 960 729, 920 724, 920 716"
      id="path1377" />
+  <polygon
+     class="fill-arrow"
+     points="920,696 908,718 932,718"
+     id="path1377-arrow" />
 </svg>
