@@ -240,6 +240,8 @@ module tb_cache4();
     #4;
     reset = 1'b0;
 
+    $display("\n=== VALIDATION TRACE ===");
+
     read_and_check(12'd0,  1'b0, 2'd0, 8'd0,  2'd0, 2'd1, 2'd2, 2'd3, "miss_fills_invalid_way0", "miss-fill");
     read_and_check(12'd16, 1'b0, 2'd1, 8'd16, 2'd1, 2'd0, 2'd2, 2'd3, "miss_fills_invalid_way1", "miss-fill");
     read_and_check(12'd32, 1'b0, 2'd2, 8'd32, 2'd2, 2'd1, 2'd0, 2'd3, "miss_fills_invalid_way2", "miss-fill");
@@ -259,6 +261,71 @@ module tb_cache4();
     read_and_check(12'd25, 1'b1, 2'd1, 8'd25, 2'd1, 2'd0, 2'd2, 2'd3, "offset1_hit_way1", "hit-offset");
     read_and_check(12'd26, 1'b1, 2'd1, 8'd26, 2'd1, 2'd0, 2'd2, 2'd3, "offset2_hit_way1", "hit-offset");
     read_and_check(12'd27, 1'b1, 2'd1, 8'd27, 2'd1, 2'd0, 2'd2, 2'd3, "offset3_hit_way1", "hit-offset");
+
+    $fclose(trace_file);
+    $fclose(grid_trace_file);
+
+    step = 0;
+    address = 0;
+    reset = 1'b1;
+    #4;
+    reset = 1'b0;
+
+    trace_file = $fopen("trace_demo.csv", "w");
+    if (trace_file == 0) begin
+      $display("FAIL could not open trace_demo.csv");
+      $fatal(1);
+    end
+    grid_trace_file = $fopen("trace_grid_demo.csv", "w");
+    if (grid_trace_file == 0) begin
+      $display("FAIL could not open trace_grid_demo.csv");
+      $fatal(1);
+    end
+    $fwrite(trace_file, "step,label,event,addr,tag,line,blk,hit,selected_way,dout,state,lru0,lru1,lru2,lru3,valid0,valid1,valid2,valid3,tag0,tag1,tag2,tag3\n");
+    $fwrite(grid_trace_file, "step,label,event,active_set,active_way,set,way,valid,tag,lru\n");
+
+    $display("\n=== GLOBAL DEMONSTRATION TRACE ===");
+
+    read_and_check(12'd0,  1'b0, 2'd0, 8'd0,  2'd0, 2'd1, 2'd2, 2'd3, "phase1_fill_set0_way0", "miss-fill");
+    read_and_check(12'd16, 1'b0, 2'd1, 8'd16, 2'd1, 2'd0, 2'd2, 2'd3, "phase1_fill_set0_way1", "miss-fill");
+    read_and_check(12'd32, 1'b0, 2'd2, 8'd32, 2'd2, 2'd1, 2'd0, 2'd3, "phase1_fill_set0_way2", "miss-fill");
+    read_and_check(12'd48, 1'b0, 2'd3, 8'd48, 2'd3, 2'd2, 2'd1, 2'd0, "phase1_fill_set0_way3", "miss-fill");
+    read_and_check(12'd4,  1'b0, 2'd0, 8'd4,  2'd0, 2'd1, 2'd2, 2'd3, "phase1_fill_set1_way0", "miss-fill");
+    read_and_check(12'd20, 1'b0, 2'd1, 8'd20, 2'd1, 2'd0, 2'd2, 2'd3, "phase1_fill_set1_way1", "miss-fill");
+    read_and_check(12'd36, 1'b0, 2'd2, 8'd36, 2'd2, 2'd1, 2'd0, 2'd3, "phase1_fill_set1_way2", "miss-fill");
+    read_and_check(12'd52, 1'b0, 2'd3, 8'd52, 2'd3, 2'd2, 2'd1, 2'd0, "phase1_fill_set1_way3", "miss-fill");
+    read_and_check(12'd8,  1'b0, 2'd0, 8'd8,  2'd0, 2'd1, 2'd2, 2'd3, "phase1_fill_set2_way0", "miss-fill");
+    read_and_check(12'd24, 1'b0, 2'd1, 8'd24, 2'd1, 2'd0, 2'd2, 2'd3, "phase1_fill_set2_way1", "miss-fill");
+    read_and_check(12'd40, 1'b0, 2'd2, 8'd40, 2'd2, 2'd1, 2'd0, 2'd3, "phase1_fill_set2_way2", "miss-fill");
+    read_and_check(12'd56, 1'b0, 2'd3, 8'd56, 2'd3, 2'd2, 2'd1, 2'd0, "phase1_fill_set2_way3", "miss-fill");
+    read_and_check(12'd12, 1'b0, 2'd0, 8'd12, 2'd0, 2'd1, 2'd2, 2'd3, "phase1_fill_set3_way0", "miss-fill");
+    read_and_check(12'd28, 1'b0, 2'd1, 8'd28, 2'd1, 2'd0, 2'd2, 2'd3, "phase1_fill_set3_way1", "miss-fill");
+    read_and_check(12'd44, 1'b0, 2'd2, 8'd44, 2'd2, 2'd1, 2'd0, 2'd3, "phase1_fill_set3_way2", "miss-fill");
+    read_and_check(12'd60, 1'b0, 2'd3, 8'd60, 2'd3, 2'd2, 2'd1, 2'd0, "phase1_fill_set3_way3", "miss-fill");
+
+    read_and_check(12'd0,  1'b1, 2'd0, 8'd0,  2'd0, 2'd3, 2'd2, 2'd1, "phase2_lru_set0_way0", "hit-lru");
+    read_and_check(12'd32, 1'b1, 2'd2, 8'd32, 2'd1, 2'd3, 2'd0, 2'd2, "phase2_lru_set0_way2", "hit-lru");
+    read_and_check(12'd20, 1'b1, 2'd1, 8'd20, 2'd3, 2'd0, 2'd2, 2'd1, "phase2_lru_set1_way1", "hit-lru");
+    read_and_check(12'd52, 1'b1, 2'd3, 8'd52, 2'd3, 2'd1, 2'd2, 2'd0, "phase2_lru_set1_way3", "hit-lru");
+    read_and_check(12'd40, 1'b1, 2'd2, 8'd40, 2'd3, 2'd2, 2'd0, 2'd1, "phase2_lru_set2_way2", "hit-lru");
+    read_and_check(12'd8,  1'b1, 2'd0, 8'd8,  2'd0, 2'd3, 2'd1, 2'd2, "phase2_lru_set2_way0", "hit-lru");
+    read_and_check(12'd60, 1'b1, 2'd3, 8'd60, 2'd3, 2'd2, 2'd1, 2'd0, "phase2_lru_set3_way3", "hit-lru");
+    read_and_check(12'd28, 1'b1, 2'd1, 8'd28, 2'd3, 2'd0, 2'd2, 2'd1, "phase2_lru_set3_way1", "hit-lru");
+
+    read_and_check(12'd64, 1'b0, 2'd1, 8'd64, 2'd2, 2'd0, 2'd1, 2'd3, "phase3_replace_set0", "miss-replace");
+    read_and_check(12'd68, 1'b0, 2'd0, 8'd68, 2'd0, 2'd2, 2'd3, 2'd1, "phase3_replace_set1", "miss-replace");
+    read_and_check(12'd72, 1'b0, 2'd1, 8'd72, 2'd1, 2'd0, 2'd2, 2'd3, "phase3_replace_set2", "miss-replace");
+    read_and_check(12'd76, 1'b0, 2'd0, 8'd76, 2'd0, 2'd1, 2'd3, 2'd2, "phase3_replace_set3", "miss-replace");
+
+    read_and_check(12'd1,  1'b1, 2'd0, 8'd1,  2'd0, 2'd1, 2'd2, 2'd3, "phase4_offset_set0_way0", "hit-offset");
+    read_and_check(12'd22, 1'b1, 2'd1, 8'd22, 2'd1, 2'd0, 2'd3, 2'd2, "phase4_offset_set1_way1", "hit-offset");
+    read_and_check(12'd42, 1'b1, 2'd2, 8'd42, 2'd2, 2'd1, 2'd0, 2'd3, "phase4_offset_set2_way2", "hit-offset");
+    read_and_check(12'd63, 1'b1, 2'd3, 8'd63, 2'd1, 2'd2, 2'd3, 2'd0, "phase4_offset_set3_way3", "hit-offset");
+
+    read_and_check(12'd64, 1'b1, 2'd1, 8'd64, 2'd1, 2'd0, 2'd2, 2'd3, "phase5_replaced_hit_set0", "hit-replaced");
+    read_and_check(12'd68, 1'b1, 2'd0, 8'd68, 2'd0, 2'd1, 2'd3, 2'd2, "phase5_replaced_hit_set1", "hit-replaced");
+    read_and_check(12'd72, 1'b1, 2'd1, 8'd72, 2'd2, 2'd0, 2'd1, 2'd3, "phase5_replaced_hit_set2", "hit-replaced");
+    read_and_check(12'd76, 1'b1, 2'd0, 8'd76, 2'd0, 2'd2, 2'd3, 2'd1, "phase5_replaced_hit_set3", "hit-replaced");
 
     if (failures == 0) begin
       $display("\nALL TESTS PASSED");

@@ -24,6 +24,7 @@ O projeto nasceu como trabalho da disciplina INF450, mas este repositório cont�
 - Testbench auto-verificável com mensagens `PASS/FAIL`.
 - Desenho SVG editável no Inkscape e renderizado no Colab com dados reais da simulação.
 - Matriz global da cache no Colab, sincronizada com o datapath e alimentada por snapshots completos.
+- Roteiros separados de validação técnica e demonstração global da cache.
 - Cobertura de teste para substituição LRU, múltiplas linhas da cache e offsets dentro do bloco.
 
 ## Estrutura
@@ -49,9 +50,9 @@ cd src
 make sim
 ```
 
-O testbench gera uma sequência de leituras e imprime, para cada acesso, endereço, `tag`, linha, bloco, sinal de `hit`, via selecionada e dado de saída.
-Além do log textual, ele gera `trace.csv`, usado pelo notebook Colab para preencher o SVG do datapath com os sinais de cada acesso, e `trace_grid.csv`, que registra o estado completo dos `4 conjuntos x 4 vias` após cada acesso.
-Os cenários cobrem misses em vias inválidas, hit após preenchimento, substituição LRU, indexação em linhas diferentes e leitura de offsets diferentes dentro do mesmo bloco.
+O testbench gera duas sequências de leituras e imprime, para cada acesso, endereço, `tag`, linha, bloco, sinal de `hit`, via selecionada e dado de saída.
+O roteiro de validação técnica produz `trace.csv` e `trace_grid.csv`; o roteiro de demonstração global produz `trace_demo.csv` e `trace_grid_demo.csv`.
+No Colab, o primeiro prova correção funcional e o segundo torna visível a evolução dos `4 conjuntos x 4 vias` com preenchimento, hits, LRU, substituições e offsets.
 
 ## Modelo padrão
 

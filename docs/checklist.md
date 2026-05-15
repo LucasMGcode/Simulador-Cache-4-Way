@@ -25,6 +25,7 @@
 - [x] Validar acessos a diferentes offsets dentro do mesmo bloco.
 - [x] Gerar `trace.csv` com os sinais usados pela visualização.
 - [x] Gerar `trace_grid.csv` com snapshots completos dos `4 conjuntos x 4 vias`.
+- [x] Gerar roteiro demonstrativo global com preenchimento, hits, LRU, substituições e offsets.
 - [x] Validar que todos os marcadores `@...` do SVG são substituíveis.
 
 ### Explicação para apresentação
@@ -37,6 +38,7 @@
 - [x] Explicar LRU por idade de 2 bits.
 - [x] Explicar o desenho Inkscape e como os marcadores se conectam ao `trace.csv`.
 - [x] Explicar a diferença entre o datapath local e a matriz global da cache no Colab.
+- [x] Explicar a diferença entre validação técnica e demonstração global.
 
 ## English
 
@@ -63,6 +65,7 @@
 - [x] Validate accesses to different offsets within the same block.
 - [x] Emit `trace.csv` with the signals used by the visualization.
 - [x] Emit `trace_grid.csv` with complete `4 sets x 4 ways` snapshots.
+- [x] Emit a full-cache demonstration route with fills, hits, LRU, replacements, and offsets.
 - [x] Validate that all SVG `@...` markers can be replaced.
 
 ## Última validação local / Latest local validation
