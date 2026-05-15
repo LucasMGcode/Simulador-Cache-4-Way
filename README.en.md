@@ -23,6 +23,7 @@ The project started as coursework for INF450, but this repository contains only 
 - Per-set LRU policy using 2-bit ages.
 - Self-checking testbench with `PASS/FAIL` messages.
 - Inkscape-editable SVG drawing rendered in Colab with real simulation trace data.
+- Full-cache grid view in Colab, synchronized with the datapath and backed by complete snapshots.
 - Test coverage for LRU replacement, multiple cache lines, and block offsets.
 
 ## Layout
@@ -49,7 +50,7 @@ make sim
 ```
 
 The testbench runs a sequence of reads and prints the address, `tag`, line, block, `hit` signal, selected way, and output data for each access.
-It also emits `trace.csv`, which the Colab notebook uses to fill the datapath SVG with per-access signal values.
+It also emits `trace.csv`, which the Colab notebook uses to fill the datapath SVG with per-access signal values, and `trace_grid.csv`, which records the full `4 sets x 4 ways` cache state after each access.
 The scenarios cover misses in invalid ways, hit after fill, LRU replacement, indexing across different cache lines, and reads from different offsets within the same block.
 
 ## Default model

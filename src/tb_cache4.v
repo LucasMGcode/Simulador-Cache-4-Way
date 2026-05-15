@@ -24,6 +24,7 @@ module tb_cache4();
 
   integer failures;
   integer trace_file;
+  integer grid_trace_file;
   integer step;
 
   cache_4way_read_only #(
@@ -156,6 +157,61 @@ module tb_cache4();
               Cache.tag1,
               Cache.tag2,
               Cache.tag3);
+
+      write_grid_snapshot(label, event_name, expected_line, observed_way);
+    end
+  endtask
+
+  task write_grid_snapshot;
+    input [255:0] label;
+    input [127:0] event_name;
+    input [LINE_BITS-1:0] active_set;
+    input [1:0] active_way;
+    integer set_idx;
+    integer way_idx;
+    reg snapshot_valid;
+    reg [TAG_BITS-1:0] snapshot_tag;
+    reg [1:0] snapshot_lru;
+    begin
+      for (set_idx = 0; set_idx < CACHE_LINES; set_idx = set_idx + 1) begin
+        for (way_idx = 0; way_idx < WAYS; way_idx = way_idx + 1) begin
+          case (way_idx)
+            0: begin
+              snapshot_valid = Cache.valid0.memory[set_idx];
+              snapshot_tag = Cache.tags0.memory[set_idx];
+              snapshot_lru = Cache.lru_way0.memory[set_idx];
+            end
+            1: begin
+              snapshot_valid = Cache.valid1.memory[set_idx];
+              snapshot_tag = Cache.tags1.memory[set_idx];
+              snapshot_lru = Cache.lru_way1.memory[set_idx];
+            end
+            2: begin
+              snapshot_valid = Cache.valid2.memory[set_idx];
+              snapshot_tag = Cache.tags2.memory[set_idx];
+              snapshot_lru = Cache.lru_way2.memory[set_idx];
+            end
+            default: begin
+              snapshot_valid = Cache.valid3.memory[set_idx];
+              snapshot_tag = Cache.tags3.memory[set_idx];
+              snapshot_lru = Cache.lru_way3.memory[set_idx];
+            end
+          endcase
+
+          $fwrite(grid_trace_file,
+                  "%0d,%0s,%0s,%0d,%0d,%0d,%0d,%0d,%0d,%0d\n",
+                  step,
+                  label,
+                  event_name,
+                  active_set,
+                  active_way,
+                  set_idx,
+                  way_idx,
+                  snapshot_valid,
+                  snapshot_tag,
+                  snapshot_lru);
+        end
+      end
     end
   endtask
 
@@ -170,7 +226,13 @@ module tb_cache4();
       $display("FAIL could not open trace.csv");
       $fatal(1);
     end
+    grid_trace_file = $fopen("trace_grid.csv", "w");
+    if (grid_trace_file == 0) begin
+      $display("FAIL could not open trace_grid.csv");
+      $fatal(1);
+    end
     $fwrite(trace_file, "step,label,event,addr,tag,line,blk,hit,selected_way,dout,state,lru0,lru1,lru2,lru3,valid0,valid1,valid2,valid3,tag0,tag1,tag2,tag3\n");
+    $fwrite(grid_trace_file, "step,label,event,active_set,active_way,set,way,valid,tag,lru\n");
 
     din = 8'd0;
     address = 0;
@@ -201,10 +263,12 @@ module tb_cache4();
     if (failures == 0) begin
       $display("\nALL TESTS PASSED");
       $fclose(trace_file);
+      $fclose(grid_trace_file);
       $finish;
     end else begin
       $display("\nTESTS FAILED failures=%0d", failures);
       $fclose(trace_file);
+      $fclose(grid_trace_file);
       $fatal(1);
     end
   end
