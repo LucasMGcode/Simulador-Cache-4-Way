@@ -175,6 +175,19 @@
          fill="#334155"
          id="path1099" />
     </marker>
+    <marker
+       id="arrowSelect"
+       viewBox="0 0 10 10"
+       refX="9"
+       refY="5"
+       markerWidth="9"
+       markerHeight="9"
+       orient="auto-start-reverse">
+      <path
+         d="M 0 0 L 10 5 L 0 10 z"
+         fill="#0284c7"
+         id="path1099a" />
+    </marker>
     <style
        id="style1102"><![CDATA[
       .title { font: 800 30px Georgia, serif; fill: #172033; letter-spacing: 0.2px; }
@@ -204,6 +217,7 @@
       .data-chip { fill: #ecfdf5; stroke: #10b981; stroke-width: 1.2; }
       .lru-chip { fill: #fff7ed; stroke: #fb923c; stroke-width: 1.2; }
       .bus { stroke: #334155; stroke-width: 2.4; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; }
+      .set-select-bus { stroke: #0284c7; stroke-width: 3.2; fill: none; marker-end: url(#arrowSelect); stroke-linecap: round; stroke-linejoin: round; }
       .data-bus { stroke: #2563eb; stroke-width: 2.5; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; }
       .fill-bus { stroke: #059669; stroke-width: 2.4; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 8 6; }
       .fill-bus-tail { stroke: #059669; stroke-width: 2.4; fill: none; marker-end: none; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 8 6; }
@@ -470,12 +484,25 @@
      x="472"
      y="160"
      class="zone-title"
-     id="text1181">2. Conjunto selecionado pela line @line</text>
+     id="text1181">2. Conjunto consultado</text>
+  <rect
+     class="signal"
+     x="904"
+     y="140"
+     width="224"
+     height="32"
+     rx="14"
+     id="rect1181a" />
+  <text
+     x="922"
+     y="161"
+     class="tiny-value"
+     id="text1181a">line @line -&gt; conjunto @line</text>
   <text
      x="472"
      y="184"
      class="small"
-     id="text1183">Quatro vias consultadas em paralelo; comparador = tag armazenada + valid.</text>
+     id="text1183">Quatro vias do conjunto sao consultadas em paralelo; comparador = tag armazenada + valid.</text>
   <g
      id="way0-group">
     <rect
@@ -930,7 +957,7 @@
      id="text1319">dout = @dout</text>
   <!-- Structured lookup and datapath routes -->
   <path
-     class="bus"
+     class="set-select-bus"
      d="M 256 328 C 256 296, 400 296, 440 240"
      id="path1321" />
   <path
