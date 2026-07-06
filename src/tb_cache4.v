@@ -124,7 +124,6 @@ module tb_cache4();
       expect_equal("line", Cache.line, expected_line);
       expect_equal("blk", Cache.blk, expected_blk);
 
-      // LRU, tag and valid metadata are written on the clock edge after done is observed.
       @(posedge clk);
       #1;
       expect_equal("lru0", Cache.lru0, expected_lru0);
