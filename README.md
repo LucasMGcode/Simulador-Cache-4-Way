@@ -101,8 +101,6 @@ ALL TESTS PASSED
 - [Desenho Inkscape e marcadores dinâmicos](docs/inkscape-drawing.md)
 - [FSM principal](docs/fsm.md)
 - [Política LRU](docs/lru.md)
-- [Como apresentar este projeto](docs/presentation.md)
-- [Checklist de desenvolvimento](docs/checklist.md)
 - [Backlog](docs/backlog.md)
 
 ## Créditos acadêmicos
